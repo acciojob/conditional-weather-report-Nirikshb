@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
-import React from "react";
-import './../styles/App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const WeatherApp = () => {
-   const [weather, setWeather] = useState({ temperature: 25, conditions: "Sunny" });
-  const temperatureColor = weather.temperature > 20 ? "red" : "blue";
+function Weather({ temperature, conditions }) {
+  const color = temperature > 20 ? 'red' : 'blue';
   return (
-    <div>
-      <h2>Current weather conditions:</h2>
-      <p>Temperature: <span style={{ color: temperatureColor }}>{weather.temperature}°C</span></p>
-      <p>Conditions: {weather.conditions}</p>
+    <div style={{ color }}>
+      <p>Temperature: {temperature}</p>
+      <p>Conditions: {conditions}</p>
     </div>
-  )
+  );
 }
 
-export default WeatherApp;
+const weatherInput = { temperature: 25, conditions: "Sunny" };
+
+ReactDOM.render(
+  <Weather temperature={weatherInput.temperature} conditions={weatherInput.conditions} />,
+  document.getElementById('root')
+);
